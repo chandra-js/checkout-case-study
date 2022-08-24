@@ -1,0 +1,26 @@
+.card {
+    display: flex;
+    border-bottom: 1px dotted #00000024;
+    padding: 10px 0px;
+}
+.card-header {
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.card-img {
+  width: 30%;
+  height:32px;
+}
+
+.card-name {
+    font-size: 22px;
+    width: 30%;
+    text-align: center;
+    padding: 4px 10px;
+}
+
+.card-action {
+    width:10%;
+    cursor: pointer;
+}

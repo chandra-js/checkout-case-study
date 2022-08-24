@@ -1,0 +1,68 @@
+.empty-cart-container{
+    width: 100%;
+}
+.empty-cart{
+    padding: 22px 0;
+    text-align: center;
+    font-size: 40px;
+}
+.cart-item-header{
+    border-bottom: 1px solid #b8babb;
+}
+.cart-item-container {
+    border-bottom: 0.5px dotted #0000006b
+}
+.cart-item-price-header {
+    width: 45%;
+    text-align: right;
+}
+.cart-item , .delivery-charge, .total-amount-container, .amount-container, .cart-item-price-container {
+ display: flex;
+}
+.cart-item {
+    font-size: 18px;
+}
+.delivery-charge-text, .delivery-charge-amount ,.total-amount-text , .amount-container ,.total-amount,.after-discount, .cart-item-price-strike, .cart-item-price{
+    width:50%;
+    font-size: 18px;
+}
+.delivery-charge, .text-bold {
+    font-weight: 800;
+}
+
+.cart-item-name {
+ width: 35%
+}
+
+.cart-item-qty {
+ width: 20%;
+ text-align: center;
+}
+
+.cart-item-price-container {
+   width: 45%;
+}
+
+.cart-item-price-strike, .total-amount {
+    text-decoration: line-through;
+}
+.amount-container ,.delivery-charge, .cart-item-price-container, .total-amount-text {
+    text-align: right;
+}
+
+.cart-item , .delivery-charge , .total-amount-container {
+    padding: 12px 0;
+}
+.cart-offer-text {
+    color: #ff0000b0;
+    font-size: 13px;
+}
+
+
+.checkout-btn {
+    font-size: 20px;
+    padding: 10px;
+    width: 100%;
+    margin: 10px;
+    cursor: pointer;
+}

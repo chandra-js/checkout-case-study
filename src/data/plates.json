@@ -1,0 +1,22 @@
+[
+  {
+        "name":"Red Plate",
+        "id":"R01",
+        "price":32.95,
+        "offer" : [[2,50]],
+        "image":"#f44336"
+    },
+    { 
+        "name":"Green Plate",
+        "id":"G01",
+        "price":24.95,
+        "offer" : [[4,30]],
+        "image":"#8bc34a"
+    },
+    { 
+        "name":"Blue Plate",
+        "id":"B01",
+        "price":7.95,
+        "image":"#1099dc"
+    }
+]
