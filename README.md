@@ -1,3 +1,4 @@
+
 # [Food order]
 ## Installing
 Using npm:
@@ -69,4 +70,5 @@ Buils Steps (Design):
    Preview
  ```
 <img width="1440" alt="Screenshot 2022-08-24 at 8 24 40 PM" src="https://user-images.githubusercontent.com/42296984/186465746-1055430f-5aec-4b98-8acf-c2d6c709085c.png">
+
 

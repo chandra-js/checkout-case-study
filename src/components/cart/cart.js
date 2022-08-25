@@ -1,8 +1,9 @@
-import removeDomContent from '../../removeDomContent';
+import removeDomContent from '../../util/removeDomContent';
 import delivery from '../../data/deliveryRule.json'
 import './cart.css';
 
 
+/* Checkout Amount Calculations */
 const checkoutCalculations= (cart)=>{
     let result = {
         delivery:0,
@@ -10,13 +11,12 @@ const checkoutCalculations= (cart)=>{
         discount : 0
     }
     Object.keys(cart).forEach(function(key){
-        //    console.log(cart[key])
-        cart[key].total= cart[key].qty *cart[key].price;
+        cart[key].total= cart[key].qty *cart[key].price; // calculate total price
            // Check Multiple Offer With Quantity, Offer text 
            let offerQty = 0
            let offerPer = 0
            let calculateTotalQty= 0
-           if(cart[key].offer){ 
+           if(cart[key].offer){    // check offer rule
             cart[key].discountedTotal=0;
                 for(let i=0;i<cart[key].offer.length;i++){
                     offerQty= cart[key].offer[i][0];
@@ -60,12 +60,14 @@ const checkoutCalculations= (cart)=>{
 
     return result
 }
+/* Cart  Header */
 const cartHeaderLayout = ()=>{
     return (`
             <div class="header-sub-title" id="cart-header"> Cart Items </div>
             
     `)
 }
+/* Cart Item Header */
 const cartItemHeadr = () => {
     return (
         `<div class="cart-items-header" id="cart-items-header"> 
@@ -78,6 +80,7 @@ const cartItemHeadr = () => {
         `
     )
 }
+/* For Empty Cart  */
 const emptyCart = () =>{
   return (
     `
@@ -88,13 +91,17 @@ const emptyCart = () =>{
     `
   )
 }
-
+/* Cart Items  */
 const cartCardLayout = (item) =>{
     return (`
        <div class="cart-item-container"> 
             <div class="cart-item"> 
             <div class="cart-item-name">${item.name} </div>
-            <div class="cart-item-qty"> ${item.qty} </div>
+            <div class="cart-item-qty-container"> 
+               <button class="btn btn-negative" id="n-${item.id}"> - </button>
+                <div class="cart-quantity-text"> ${item.qty} </div>
+                <button class="btn btn-positive" id="p-${item.id}"> + </button> 
+            </div>
             <div class="cart-item-price-container"> 
                     <div class="cart-item-price-strike"> 
                         ${item.discount?`$ ${(item.total).toFixed(2)} `:''}
@@ -112,6 +119,7 @@ const cartCardLayout = (item) =>{
     `
     )
 }
+/* DElivery charge , total amount and checkout button  */
 const checkOutInfo = (obj) =>{
     let{delivery,total ,discount} = obj;
 
@@ -140,9 +148,9 @@ const cartLayout = (cart) =>{
    let cartKeys = Object.keys(cart)
    removeDomContent('cart') // Remove Previous all cart childrn elements 
    if(cartKeys.length){
-    let checkoutAmount = checkoutCalculations(cart);
-    tempLayout += cartItemHeadr()
-    cartKeys.forEach(element => {
+    let checkoutAmount = checkoutCalculations(cart); // calculate Checkout amount
+    tempLayout += cartItemHeadr()                   // cart item headers 
+    cartKeys.forEach(element => {                   // create cart items
         tempLayout += cartCardLayout(cart[element]);
         
      });
