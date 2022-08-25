@@ -1,4 +1,4 @@
-import {appendDOMChild} from "../../addDomContent";
+import {appendDOMChild} from "../../util/addDomContent";
 import itemsLayout from "../items/items";
 import cartLayout from "../cart/cart";
 import './layout.css'
@@ -23,8 +23,8 @@ const mainLayout = () =>{
     </div>
     </div>`)
 }
-
-const manageCart =(id) =>{
+// Add to cart
+const manageCart =(id) =>{ 
     if(cart[id]){
         cart[id].qty +=1 
     }else{ 
@@ -34,7 +34,23 @@ const manageCart =(id) =>{
 
     createCartLayout(); // Update the Cart Layout
 }
-
+// Increment & decrement  in cart
+const incDecCart =(contents)=>{
+   let value = contents.split('-')
+   if(value[0]=== 'n'){           // For decrement  
+    let qty = cart[value[1]].qty  -1
+        if(qty){                    // For reduce quantity
+            cart[value[1]].qty =qty
+            createCartLayout(); // Update the Cart Layout
+        }else {                 // remove item from cart
+            delete cart[value[1]]
+            createCartLayout(); // Update the Cart Layout
+        }
+   }else {
+    manageCart(value[1])  // For increment 
+   }
+}
+// Manage Dynamic events
 const itemDynamicClickEvents = (className,checkout=false) =>{
     let elements = document.getElementsByClassName(className);
     for(let i=0;i<elements.length;i++){
@@ -42,10 +58,14 @@ const itemDynamicClickEvents = (className,checkout=false) =>{
         element.addEventListener('click', function(e){
             e.preventDefault();
             e.stopPropagation();
-            if(checkout){
+            if(className== 'checkout-btn'){
                 cart ={}
                 createCartLayout()
-            }else{
+            }else if(className== 'btn'){
+                let id = e.target.id
+                incDecCart(id)
+            }
+            else{
                 let id = e.target.id
                 manageCart(id.split("-")[1])
             }
@@ -75,7 +95,8 @@ const createCartLayout =() =>{
     }
 
        /* Create cart Layout */
-       appendDOMChild(cartObj)  
+       appendDOMChild(cartObj) 
+       itemDynamicClickEvents('btn') 
        itemDynamicClickEvents('checkout-btn',true)
 }
 
